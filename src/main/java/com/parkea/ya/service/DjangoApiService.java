@@ -1,126 +1,118 @@
 package com.parkea.ya.service;
 
+
+import com.parkea.ya.dto.SolicitudAccesoDto;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestTemplate;
-
-import com.parkea.ya.dto.DjangoApiResponse;
-import com.parkea.ya.dto.ParkingRegistrationRequest;
 
 @Service
 public class DjangoApiService {
     
-    @Value("${django.api.base-url:http://localhost:8000}")
-    private String djangoBaseUrl;
+    private static final Logger logger = LoggerFactory.getLogger(DjangoApiService.class);
     
-    @Value("${django.api.token:}")
-    private String apiToken;
+    @Value("${django.api.url:http://localhost:8000/api}")
+    private String djangoApiUrl;
     
     private final RestTemplate restTemplate;
     
-    public DjangoApiService() {
-        this.restTemplate = new RestTemplate();
+    public DjangoApiService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
     
-    public DjangoApiResponse enviarSolicitudAcceso(ParkingRegistrationRequest solicitud) {
+    public ResponseEntity<Map<String, Object>> enviarSolicitudAcceso(SolicitudAccesoDto solicitud) {
         try {
-            String url = djangoBaseUrl + "/api/parking/approval-requests/";
-            
             // Preparar headers
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            if (apiToken != null && !apiToken.isEmpty()) {
-                headers.set("Authorization", "Token " + apiToken);
+            headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
+            
+            // Preparar el cuerpo de la solicitud como JSON string
+            String jsonBody = String.format(
+                "{\"nombre\":\"%s\",\"email\":\"%s\",\"telefono\":\"%s\",\"empresa\":\"%s\",\"mensaje\":\"%s\"}",
+                escaparJson(solicitud.getNombre()),
+                escaparJson(solicitud.getEmail()),
+                escaparJson(solicitud.getTelefono()),
+                escaparJson(solicitud.getEmpresa()),
+                escaparJson(solicitud.getMensaje())
+            );
+            
+            logger.info("Datos enviados a Django (JSON): {}", jsonBody);
+            
+            HttpEntity<String> requestEntity = new HttpEntity<>(jsonBody, headers);
+            
+            // URL del endpoint de Django
+            String url = djangoApiUrl + "/users/solicitudes/owner/solicitar/";
+            
+            logger.info("Enviando solicitud a Django API: {}", url);
+            
+            // Realizar la petición POST
+            @SuppressWarnings("unchecked")
+            ResponseEntity<Map<String, Object>> response = (ResponseEntity<Map<String, Object>>) (ResponseEntity<?>) restTemplate.exchange(
+                url, 
+                HttpMethod.POST, 
+                requestEntity, 
+                Map.class
+            );
+            
+            // Procesar respuesta
+            if (response.getStatusCode() == HttpStatus.CREATED || response.getStatusCode() == HttpStatus.OK) {
+                Map<String, Object> successResponse = new HashMap<>();
+                successResponse.put("success", true);
+                successResponse.put("message", "Solicitud enviada correctamente");
+                successResponse.put("data", response.getBody());
+                
+                logger.info("Solicitud enviada exitosamente: {}", response.getBody());
+                return ResponseEntity.ok(successResponse);
+                
+            } else {
+                Map<String, Object> errorResponse = new HashMap<>();
+                errorResponse.put("success", false);
+                errorResponse.put("error", "Error al enviar la solicitud");
+                errorResponse.put("details", response.getBody());
+                
+                logger.error("Error en la respuesta de Django: {} - Body: {}", response.getStatusCode(), response.getBody());
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
             }
             
-            // Preparar body
-            Map<String, Object> requestBody = new HashMap<>();
-            requestBody.put("nombre_solicitante", solicitud.getNombre());
-            requestBody.put("email", solicitud.getEmail());
-            requestBody.put("telefono", solicitud.getTelefono());
-            requestBody.put("empresa", solicitud.getEmpresa());
-            requestBody.put("mensaje", solicitud.getMensaje());
-            requestBody.put("tipo_solicitud", "ACCESO_PANEL");
+        } catch (org.springframework.web.client.HttpClientErrorException.BadRequest e) {
+            logger.error("Error 400 Bad Request de Django: {}", e.getResponseBodyAsString(), e);
             
-            HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestBody, headers);
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("error", "Datos inválidos: " + e.getResponseBodyAsString());
             
-            // Enviar solicitud
-            ResponseEntity<Map> response = restTemplate.exchange(
-                url, HttpMethod.POST, entity, Map.class);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
             
-            return procesarRespuesta(response);
-            
-        } catch (HttpClientErrorException e) {
-            return new DjangoApiResponse(false, "Error del cliente: " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
-        } catch (HttpServerErrorException e) {
-            return new DjangoApiResponse(false, "Error del servidor Django: " + e.getStatusCode());
         } catch (Exception e) {
-            return new DjangoApiResponse(false, "Error de conexión: " + e.getMessage());
+            logger.error("Error al comunicarse con Django API: {}", e.getMessage(), e);
+            
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("success", false);
+            errorResponse.put("error", "Error de conexión con el servidor: " + e.getMessage());
+            
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
     
-    public DjangoApiResponse obtenerEstadisticasPanel() {
-        try {
-            String url = djangoBaseUrl + "/api/dashboard/stats/";
-            
-            HttpHeaders headers = new HttpHeaders();
-            if (apiToken != null && !apiToken.isEmpty()) {
-                headers.set("Authorization", "Token " + apiToken);
-            }
-            
-            HttpEntity<String> entity = new HttpEntity<>(headers);
-            ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
-            
-            return procesarRespuesta(response);
-            
-        } catch (Exception e) {
-            return new DjangoApiResponse(false, "Error al obtener estadísticas: " + e.getMessage());
+    /**
+     * Escapa caracteres especiales en JSON
+     */
+    private String escaparJson(String valor) {
+        if (valor == null) {
+            return "";
         }
-    }
-    
-    public DjangoApiResponse obtenerSolicitudesPendientes() {
-        try {
-            String url = djangoBaseUrl + "/api/parking/approval-requests/pendientes/";
-            
-            HttpHeaders headers = new HttpHeaders();
-            if (apiToken != null && !apiToken.isEmpty()) {
-                headers.set("Authorization", "Token " + apiToken);
-            }
-            
-            HttpEntity<String> entity = new HttpEntity<>(headers);
-            ResponseEntity<Map> response = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
-            
-            return procesarRespuesta(response);
-            
-        } catch (Exception e) {
-            return new DjangoApiResponse(false, "Error al obtener solicitudes: " + e.getMessage());
-        }
-    }
-    
-    private DjangoApiResponse procesarRespuesta(ResponseEntity<Map> response) {
-        DjangoApiResponse apiResponse = new DjangoApiResponse();
-        apiResponse.setStatusCode(response.getStatusCodeValue());
-        
-        if (response.getStatusCode().is2xxSuccessful()) {
-            apiResponse.setSuccess(true);
-            apiResponse.setMessage("Solicitud procesada exitosamente");
-            apiResponse.setData(response.getBody());
-        } else {
-            apiResponse.setSuccess(false);
-            apiResponse.setMessage("Error en la respuesta del servidor");
-            apiResponse.setData(response.getBody());
-        }
-        
-        return apiResponse;
+        return valor
+            .replace("\\", "\\\\")
+            .replace("\"", "\\\"")
+            .replace("\n", "\\n")
+            .replace("\r", "\\r")
+            .replace("\t", "\\t");
     }
 }

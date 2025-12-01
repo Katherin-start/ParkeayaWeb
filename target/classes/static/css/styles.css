@@ -136,3 +136,57 @@ body {
         font-size: 1.5rem;
     }
 }
+
+/* Confirmation page specific styles */
+.confirmation-section {
+    padding: 60px 0;
+    background: linear-gradient(180deg, var(--background-light) 0%, #ffffff 100%);
+}
+
+.confirmation-card {
+    background: var(--background-white);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(9, 30, 66, 0.08);
+}
+
+.confirmation-icon .icon-brand {
+    color: var(--accent-blue);
+    text-shadow: 0 10px 30px rgba(41,121,255,0.12);
+}
+
+.title-brand {
+    color: var(--primary-dark);
+}
+
+.user-info {
+    background: linear-gradient(90deg, rgba(40,53,147,0.04), rgba(255,255,255,0.6));
+}
+
+.icon-accent { color: var(--accent-blue); }
+
+.step-number {
+    background: var(--gradient-accent);
+    color: white;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.action-buttons .btn-primary {
+    padding: 12px 28px;
+    border-radius: 10px;
+}
+
+.action-buttons .btn-outline-primary {
+    border-color: rgba(40,53,147,0.15);
+    color: var(--primary-main);
+}
+
+.support-info { color: #6b7280; }
+
+@media (max-width: 576px) {
+    .confirmation-card .card-body { padding: 24px; }
+}
