@@ -44,160 +44,103 @@
             </button>
         </div>
 
-        <div class="container">
-            <div class="row align-items-center min-vh-100">
+        <div class="hero-center-content">
+    <div class="hero-content text-center">
+
+        <div class="innovation-badge mb-4">
+            <span class="badge-content">
+                <i class="fas fa-bolt me-2"></i>
+                Plataforma Inteligente
+            </span>
+        </div>
+
+        <h1 class="hero-title mb-4">
+            <span class="title-main">Parkea Ya</span>
+            <span class="title-subtitle">Estacionamiento Inteligente</span>
+        </h1>
+
+        <p class="hero-description mb-5">
+            La plataforma digital que revoluciona la movilidad urbana conectando conductores con
+            estacionamientos verificados en tiempo real.
+            <strong>Optimizamos espacios, reducimos emisiones y mejoramos la experiencia de
+                movilidad</strong> para ciudades más inteligentes.
+        </p>
+
+        <div class="hero-actions mb-5">
+            <div class="action-buttons justify-content-center">
+                <a th:href="@{/solicitar-acceso}" class="btn btn-primary btn-hero me-3">
+                    <i class="fas fa-building me-2"></i>
+                    <span>Registrar Estacionamiento</span>
+                </a>
+                <a th:href="@{/descargar-app}" class="btn btn-outline-light btn-hero">
+                    <i class="fas fa-mobile-alt me-2"></i>
+                    <span>Descargar App</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    </section>
+    <!-- mapa estacionamientos -->
+<section class="map-section">
+    <div class="container">
+        <div class="map-container">
+            <div class="row g-0">
                 <div class="col-lg-6">
-                    <div class="hero-content">
-                        <div class="innovation-badge mb-4">
-                            <span class="badge-content">
-                                <i class="fas fa-bolt me-2"></i>
-                                Plataforma Inteligente
-                            </span>
-                        </div>
+                    <div class="map-content">
+                        <h2 class="map-title">
+                            No esperes más
+                            <span>Únete a nuestro equipo Parkea Ya</span>
+                        </h2>
 
-                        <h1 class="hero-title mb-4">
-                            <span class="title-main">Parkea Ya</span>
-                            <span class="title-subtitle">Estacionamiento Inteligente</span>
-                        </h1>
-
-                        <p class="hero-description mb-5">
-                            La plataforma digital que revoluciona la movilidad urbana conectando conductores con
-                            estacionamientos verificados en tiempo real.
-                            <strong>Optimizamos espacios, reducimos emisiones y mejoramos la experiencia de
-                                movilidad</strong> para ciudades más inteligentes.
-                        </p>
-
-                        <div class="hero-actions mb-5">
-                            <div class="action-buttons">
-                                <a th:href="@{/solicitar-acceso}" class="btn btn-primary btn-hero me-3">
-                                    <i class="fas fa-building me-2"></i>
-                                    <span>Registrar Estacionamiento</span>
-                                </a>
-                                <a th:href="@{/descargar-app}" class="btn btn-outline-light btn-hero">
-                                    <i class="fas fa-mobile-alt me-2"></i>
-                                    <span>Descargar App</span>
-                                </a>
+                        
+                        <div class="map-benefits">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="benefit-text">
+                                    <h4>Aumenta tus ingresos</h4>
+                                </div>
                             </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-cogs"></i>
+                                </div>
+                                <div class="benefit-text">
+                                    <h4>Automatización total</h4>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="benefit-text">
+                                    <h4>Más clientes</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="map-cta">
+                            <h3>Estacionamientos cercanos</h3>
+                            
+
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-6">
-                    <div class="hero-stats-large">
-                        <div class="stats-card">
-                            <div class="stat-item-large">
-                                <div class="stat-number">+50%</div>
-                                <div class="stat-label">Eficiencia en búsqueda</div>
-                            </div>
-                            <div class="stat-item-large">
-                                <div class="stat-number">-30%</div>
-                                <div class="stat-label">Emisiones CO₂</div>
-                            </div>
-                            <div class="stat-item-large">
-                                <div class="stat-number">500+</div>
-                                <div class="stat-label">Estacionamientos</div>
-                            </div>
-                        </div>
-                    </div>
+                    <div id="map" style="width:100%; height:600px; border-radius:16px; overflow:hidden; box-shadow:10 15px 40px rgba(0,0,0,0.18); margin-bottom:30px;"></div>
+
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Sección de Características con Imágenes Grandes -->
-    <!-- Sección de Características con Tarjetas -->
-    <section class="features-large-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title-large">Características Principales</h2>
-                <p class="section-subtitle-large">
-                    Descubre todas las funcionalidades que hacen de Parkea Ya la mejor opción para tu estacionamiento
-                </p>
-            </div>
-
-            <div class="features-grid">
-                <!-- Mapa en Tiempo Real -->
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <h3 class="feature-title-large">Mapa en Tiempo Real</h3>
-                    </div>
-                    <div class="feature-image-compact">
-                        <img th:src="@{/images/mapamaps.jpg}" alt="Mapa en Tiempo Real" class="img-fluid">
-                    </div>
-                    <p class="feature-description-large">
-                        Visualiza la disponibilidad de estacionamientos en tiempo real con nuestra tecnología de
-                        geolocalización avanzada.
-                    </p>
-                    <div class="feature-stats-compact">
-                        <div class="feature-stat">
-                            <span class="stat-value">+50%</span>
-                            <span class="stat-text">más rápido</span>
-                        </div>
-                        <div class="feature-stat">
-                            <span class="stat-value">24/7</span>
-                            <span class="stat-text">disponible</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reserva Instantánea -->
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-calendar-check"></i>
-                        </div>
-                        <h3 class="feature-title-large">Reserva Instantánea</h3>
-                    </div>
-                    <div class="feature-image-compact">
-                        <img th:src="@{/images/reservas.png}" alt="Reserva Rápida" class="img-fluid">
-                    </div>
-                    <p class="feature-description-large">
-                        Garantiza tu espacio con reservas instantáneas. Programa tu llegada y evita la incertidumbre.
-                    </p>
-                    <div class="feature-stats-compact">
-                        <div class="feature-stat">
-                            <span class="stat-value">0%</span>
-                            <span class="stat-text">de estrés</span>
-                        </div>
-                        <div class="feature-stat">
-                            <span class="stat-value">1 min</span>
-                            <span class="stat-text">reserva</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pago Seguro -->
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon-large">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="feature-title-large">Pago Seguro</h3>
-                    </div>
-                    <div class="feature-image-compact">
-                        <img th:src="@{/images/pagosseguros.png}" alt="Pago Seguro" class="img-fluid">
-                    </div>
-                    <p class="feature-description-large">
-                        Transacciones 100% seguras con encriptación de última generación. Paga sin contacto.
-                    </p>
-                    <div class="feature-stats-compact">
-                        <div class="feature-stat">
-                            <span class="stat-value">100%</span>
-                            <span class="stat-text">protegido</span>
-                        </div>
-                        <div class="feature-stat">
-                            <span class="stat-value">SSL</span>
-                            <span class="stat-text">certificado</span>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
     <!-- Sección de Beneficios con Imágenes Grandes -->
     <section class="benefits-large-section">
@@ -260,54 +203,6 @@
         </div>
     </section>
 
-    <!-- Sección de App con Mockup Grande -->
-    <section class="app-showcase-section">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <div class="app-content">
-                        <h2 class="app-title">Descarga la App Parkea Ya</h2>
-                        <p class="app-description">
-                            Transforma tu experiencia de estacionamiento con nuestra aplicación móvil.
-                            Encuentra, reserva y paga estacionamientos de forma rápida y segura.
-                        </p>
-
-                        <div class="app-features-list">
-                            <div class="app-feature">
-                                <i class="fas fa-check-circle feature-check"></i>
-                                <span>Búsqueda en tiempo real</span>
-                            </div>
-                            <div class="app-feature">
-                                <i class="fas fa-check-circle feature-check"></i>
-                                <span>Reservas instantáneas</span>
-                            </div>
-                            <div class="app-feature">
-                                <i class="fas fa-check-circle feature-check"></i>
-                                <span>Pagos seguros</span>
-                            </div>
-                            <div class="app-feature">
-                                <i class="fas fa-check-circle feature-check"></i>
-                                <span>Navegación integrada</span>
-                            </div>
-                        </div>
-
-                        <div class="download-buttons-large">
-                            <a href="#" class="btn btn-dark btn-download">
-                                <i class="fab fa-google-play me-2"></i>
-                                Google Play
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="app-mockup-large">
-                        <img th:src="@{/images/parkeayalogo.png}" alt="App Parkea Ya" class="img-fluid">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Sección Final CTA -->
     <section class="final-cta-large">
         <div class="container text-center">
@@ -333,6 +228,223 @@
 
     <div th:replace="~{fragments/footer :: footer}"></div>
 
+    <!-- Google Maps: initialization + fetching parkings from backend -->
+    <script>
+        // Map and markers will be initialized by Google Maps callback `initParkeaMap`
+        let parkeaMap, userMarker, parkMarkers = [], infoWindow;
+
+        function initParkeaMap() {
+            // Wait for the #map element to exist before initializing.
+            const defaultCenter = { lat: -8.109052, lng: -79.021530 };
+            let attempts = 0;
+            const maxAttempts = 50; // ~5 seconds with 100ms interval
+
+            function tryInit() {
+                const mapEl = document.getElementById('map');
+                attempts++;
+                if (!mapEl) {
+                    if (attempts <= maxAttempts) {
+                        // retry shortly
+                        setTimeout(tryInit, 100);
+                        return;
+                    } else {
+                        console.error('initParkeaMap: #map element not found after retries. Map initialization aborted.');
+                        return;
+                    }
+                }
+
+                parkeaMap = new google.maps.Map(mapEl, {
+                    center: defaultCenter,
+                    zoom: 13,
+                    disableDefaultUI: false,
+                    styles: []
+                });
+                infoWindow = new google.maps.InfoWindow();
+
+                // Try to geolocate the user
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(pos => {
+                        const userPos = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+                        parkeaMap.setCenter(userPos);
+                        parkeaMap.setZoom(14);
+                        userMarker = new google.maps.Marker({
+                            position: userPos,
+                            map: parkeaMap,
+                            title: 'Tu ubicación',
+                            icon: { path: google.maps.SymbolPath.CIRCLE, scale: 7, fillColor: '#00bcd4', fillOpacity: 0.95, strokeColor: '#fff', strokeWeight: 2 }
+                        });
+                        fetchAndRenderParkings(userPos);
+                    }, () => fetchAndRenderParkings(null), { timeout: 10000 });
+                } else {
+                    fetchAndRenderParkings(null);
+                }
+            }
+
+            tryInit();
+        }
+
+        async function fetchAndRenderParkings(userPos) {
+            const base = (typeof PARKINGS_API_BASE !== 'undefined' ? PARKINGS_API_BASE : '');
+            const endpoints = [
+                base + '/api/parkings/',
+                base + '/api/parkings/',
+                base + '/api/parking/parkings',
+                base + '/api/parking/parkings/',
+                base + '/api/parking/',
+                base + '/api/parking/',
+                base + '/parkings',
+                base + '/parkings/',
+                base + '/api/parkings/list'
+            ];
+            let data = null;
+            for (const ep of endpoints) {
+                try {
+                    console.debug('Trying parkings endpoint:', ep);
+                    const res = await fetch(ep);
+                    console.debug('Response status for', ep, res.status);
+                    if (!res.ok) continue;
+                    const txt = await res.text();
+                    let parsed = null;
+                    try { parsed = JSON.parse(txt); } catch (e) { parsed = txt; }
+                    console.debug('Preview response for', ep, Array.isArray(parsed) ? parsed.slice(0,3) : parsed);
+                    data = parsed;
+                    if (Array.isArray(data)) break;
+                    if (data && Array.isArray(data.results)) { data = data.results; break; }
+                } catch (e) {
+                    console.warn('Fetch error for', ep, e);
+                    // try next endpoint
+                }
+            }
+            if (!Array.isArray(data)) {
+                console.warn('No se pudo cargar la lista de parkings. Revisar endpoint backend.', data);
+                return;
+            }
+
+            // Clear existing markers
+            parkMarkers.forEach(m => m.setMap(null));
+            parkMarkers = [];
+
+            let added = 0;
+            data.forEach(p => {
+                // Try multiple possible coordinate sources. many backends store a single `coordenadas` string like "lat,lng"
+                let lat = parseFloat(p.latitude ?? p.lat ?? p.latitud ?? p.coords?.lat ?? p.location?.lat);
+                let lng = parseFloat(p.longitude ?? p.lng ?? p.long ?? p.longitud ?? p.coords?.lng ?? p.location?.lng);
+                if ((isNaN(lat) || isNaN(lng)) && p.coordenadas) {
+                    // common formats: "lat,lng" or "lng,lat" or "POINT(lng lat)"
+                    const s = String(p.coordenadas).trim();
+                    // POINT(lon lat)
+                    const pointMatch = s.match(/POINT\s*\(\s*([\-\d\.]+)\s+([\-\d\.]+)\s*\)/i);
+                    if (pointMatch) {
+                        const maybeLng = parseFloat(pointMatch[1]);
+                        const maybeLat = parseFloat(pointMatch[2]);
+                        if (!isNaN(maybeLat) && !isNaN(maybeLng)) {
+                            lat = maybeLat; lng = maybeLng;
+                        }
+                    } else if (s.indexOf(',') !== -1) {
+                        const parts = s.split(',').map(x => x.trim());
+                        const a = parseFloat(parts[0]);
+                        const b = parseFloat(parts[1]);
+                        // Heuristic: if first value is between -90 and 90, treat as lat
+                        if (!isNaN(a) && Math.abs(a) <= 90 && !isNaN(b) && Math.abs(b) <= 180) {
+                            lat = a; lng = b;
+                        } else if (!isNaN(b) && Math.abs(b) <= 90 && !isNaN(a) && Math.abs(a) <= 180) {
+                            lat = b; lng = a;
+                        }
+                    } else {
+                        // Try to extract two numbers anywhere in the string
+                        const nums = s.match(/[\-\d\.]+/g);
+                        if (nums && nums.length >= 2) {
+                            const n1 = parseFloat(nums[0]);
+                            const n2 = parseFloat(nums[1]);
+                            if (Math.abs(n1) <= 90 && Math.abs(n2) <= 180) { lat = n1; lng = n2; }
+                            else if (Math.abs(n2) <= 90 && Math.abs(n1) <= 180) { lat = n2; lng = n1; }
+                        }
+                    }
+                }
+                if (Number.isNaN(lat) || Number.isNaN(lng)) return;
+
+                const marker = new google.maps.Marker({
+                    position: { lat, lng },
+                    map: parkeaMap,
+                    title: p.name ?? p.nombre ?? 'Estacionamiento'
+                });
+
+                const available = p.available ?? p.available_spaces ?? p.plazas_disponibles ?? p.plazas ?? 'N/A';
+                const price = p.price ?? p.rate ?? p.precio ?? 'N/A';
+                const distanceKm = userPos ? (haversine(userPos.lat, userPos.lng, lat, lng) / 1000).toFixed(2) : null;
+
+                const content = `
+                    <div style="min-width:210px">
+                        <h5 style="margin:0 0 6px 0">${escapeHtml(p.name ?? p.nombre ?? 'Estacionamiento')}</h5>
+                        <div style="font-size:0.95rem; color:#333">
+                            <div>Plazas disponibles: <strong>${escapeHtml(String(available))}</strong></div>
+                            <div>Precio: <strong>${escapeHtml(String(price))}</strong></div>
+                            ${distanceKm ? `<div>Distancia: <strong>${distanceKm} km</strong></div>` : ''}
+                            ${p.address ? `<div style="margin-top:6px; font-size:0.85rem; color:#666">${escapeHtml(p.address)}</div>` : ''}
+                        </div>
+                    </div>
+                `;
+
+                marker.addListener('click', () => {
+                    infoWindow.setContent(content);
+                    infoWindow.open(parkeaMap, marker);
+                });
+
+                parkMarkers.push(marker);
+                added++;
+            });
+            console.debug('Markers added:', added);
+        }
+
+        function haversine(lat1, lon1, lat2, lon2) {
+            function toRad(v){ return v * Math.PI / 180; }
+            const R = 6371000;
+            const dLat = toRad(lat2-lat1);
+            const dLon = toRad(lon2-lon1);
+            const a = Math.sin(dLat/2)*Math.sin(dLat/2) + Math.cos(toRad(lat1))*Math.cos(toRad(lat2)) * Math.sin(dLon/2)*Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return R * c;
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"'`]/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;",'`':'&#x60'}[s]));
+        }
+    </script>
+
+    <!-- Load Google Maps JS using key from application.properties (injected via Thymeleaf) -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var PARKEA_MAPS_API_KEY = /*[[${@environment.getProperty('google.maps.apiKey')}]]*/ 'REPLACE_ME';
+        var PARKINGS_API_BASE = /*[[${@environment.getProperty('django.api.base-url')}]]*/ 'http://localhost:8000';
+        /*]]>*/
+    </script>
+
+    <script>
+        // Dynamic loader for Google Maps to avoid URL encoding issues with Thymeleaf
+        (function loadGoogleMaps() {
+            try {
+                if (typeof google !== 'undefined' && google.maps) {
+                    console.log('Google Maps already loaded');
+                    return;
+                }
+            } catch (e) { /* ignore */ }
+
+            if (!window.PARKEA_MAPS_API_KEY || window.PARKEA_MAPS_API_KEY === 'REPLACE_ME') {
+                console.error('Google Maps API key is missing. Set google.maps.apiKey in application.properties.');
+                return;
+            }
+
+            var script = document.createElement('script');
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(window.PARKEA_MAPS_API_KEY) + '&callback=initParkeaMap';
+            script.async = true;
+            script.defer = true;
+            script.onerror = function () {
+                console.error('Error cargando la librería de Google Maps. Revisa la API key y restricciones.');
+            };
+            document.head.appendChild(script);
+        })();
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             console.log('Iniciando carrusel...');
@@ -354,7 +466,7 @@
                     }
                 });
 
-                // 3) Dedupe: mantener sólo el primer .carousel-controls dentro del hero
+                //  mantener sólo el primer .carousel-controls dentro del hero
                 const ctrls = heroRoot.querySelectorAll('.carousel-controls');
                 if (ctrls.length > 1) {
                     for (let i = 1; i < ctrls.length; i++) ctrls[i].remove();

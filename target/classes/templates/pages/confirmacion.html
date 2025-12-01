@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="fragments/header :: head">
+    <link th:href="@{/css/confirmacion.css}" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <!-- Confirmation Section -->
+    <section class="confirmation-section" style="margin-top: 120px; padding: 80px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="confirmation-card card border-0 shadow text-center">
+                        <div class="card-body p-5">
+                            <!-- Success Icon -->
+                            <div class="confirmation-icon mb-4">
+                                <i class="fas fa-check-circle fa-5x icon-brand"></i>
+                            </div>
+                            
+                            <!-- Title -->
+                            <h2 class="display-5 fw-bold title-brand mb-3" th:text="${titulo}">
+                                ¡Solicitud Enviada Exitosamente!
+                            </h2>
+                            
+                            <!-- Message -->
+                            <p class="lead mb-4" th:text="${mensaje}">
+                                Hemos recibido tu solicitud de acceso al panel de Parkea Ya. 
+                                Te contactaremos en un plazo máximo de 48 horas.
+                            </p>
+                            
+                            <!-- User Info -->
+                            <div class="user-info rounded-3 p-5 mb-5" style="background: rgba(0, 188, 212, 0.08); border: 2px solid rgba(0, 188, 212, 0.2); box-shadow: 0 4px 15px rgba(0, 188, 212, 0.1);">
+                                <h5 class="mb-4" style="color: var(--primary-dark); font-weight: 800;">
+                                    <i class="fas fa-user me-2" style="color: var(--accent-teal);"></i>
+                                    Resumen de tu solicitud
+                                </h5>
+                                <div class="row" style="text-align: left;">
+                                    <div class="col-6">
+                                        <strong style="color: var(--primary-dark);">Nombre:</strong>
+                                    </div>
+                                    <div class="col-6" th:text="${nombre}">
+                                        Juan Pérez
+                                    </div>
+                                    
+                                    <div class="col-6 mt-3">
+                                        <strong style="color: var(--primary-dark);">Email:</strong>
+                                    </div>
+                                    <div class="col-6 mt-3" th:text="${email}">
+                                        juan@empresa.com
+                                    </div>
+                                    
+                                    <div class="col-6 mt-3">
+                                        <strong style="color: var(--primary-dark);">Referencia:</strong>
+                                    </div>
+                                    <div class="col-6 mt-3">
+                                        #<span th:text="${#dates.format(#dates.createNow(), 'yyyyMMddHHmm')}">
+                                            202501011200
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Next Steps -->
+                            <div class="next-steps mb-5" style="background: rgba(41, 121, 255, 0.06); border-left: 5px solid var(--accent-blue); padding: 25px; border-radius: 10px;">
+                                <h5 class="mb-4" style="color: var(--primary-dark); font-weight: 800;">
+                                    <i class="fas fa-list-alt me-2" style="color: var(--accent-teal);"></i>
+                                    Próximos pasos
+                                </h5>
+                                <div class="steps">
+                                    <div class="step-item d-flex align-items-start mb-3">
+                                        <span class="step-number d-inline-flex align-items-center justify-content-center me-3" style="min-width: 40px; height: 40px;">1</span>
+                                        <span style="color: #666; line-height: 1.8;">Revisión de tu solicitud por nuestro equipo</span>
+                                    </div>
+                                    <div class="step-item d-flex align-items-start mb-3">
+                                        <span class="step-number d-inline-flex align-items-center justify-content-center me-3" style="min-width: 40px; height: 40px;">2</span>
+                                        <span style="color: #666; line-height: 1.8;">Contacto vía email para coordinación</span>
+                                    </div>
+                                    <div class="step-item d-flex align-items-start">
+                                        <span class="step-number d-inline-flex align-items-center justify-content-center me-3" style="min-width: 40px; height: 40px;">3</span>
+                                        <span style="color: #666; line-height: 1.8;">Activación de tu acceso al panel</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="action-buttons d-flex gap-3 justify-content-center flex-wrap" style="margin: 45px 0; padding: 30px 0;">
+                                <a th:href="@{/}" class="btn" style="padding: 14px 32px; border-radius: 10px; background: linear-gradient(135deg, var(--accent-teal) 0%, var(--accent-blue) 100%); color: white; font-weight: 700; text-decoration: none; box-shadow: 0 8px 20px rgba(0, 188, 212, 0.25);">
+                                    <i class="fas fa-home me-2"></i>Volver al Inicio
+                                </a>
+                                <a th:href="@{/contacto}" class="btn" style="padding: 14px 32px; border-radius: 10px; border: 2px solid var(--accent-teal); color: var(--accent-teal); font-weight: 700; text-decoration: none; background: transparent; transition: all 0.3s ease;">
+                                    <i class="fas fa-envelope me-2"></i>Contactar Soporte
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Resources -->
+    <section class="resources-section py-5">
+        <div class="container">
+            <h3 class="text-center mb-4">Mientras tanto, explora Parkea Ya</h3>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="resource-card card text-center h-100">
+                        <div class="card-body p-4">
+                            <i class="fas fa-robot fa-3x mb-3"></i>
+                            <h5 class="mb-3">Generador IA</h5>
+                            <p class="mb-4">
+                                Prueba nuestro asistente de IA para generar contenido sobre movilidad
+                            </p>
+                            <a th:href="@{/ia-generador}" class="btn btn-outline-primary">
+                                Probar Ahora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="resource-card card text-center h-100">
+                        <div class="card-body p-4">
+                            <i class="fas fa-mobile-alt fa-3x mb-3"></i>
+                            <h5 class="mb-3">App Móvil</h5>
+                            <p class="mb-4">
+                                Descarga nuestra app y experimenta la búsqueda inteligente
+                            </p>
+                            <div class="app-badges">
+                                <a href="#" class="btn me-2">
+                                    <i class="fab fa-google-play"></i> Play Store
+                                </a>
+                                <a href="#" class="btn">
+                                    <i class="fab fa-app-store"></i> App Store
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="resource-card card text-center h-100">
+                        <div class="card-body p-4">
+                            <i class="fas fa-graduation-cap fa-3x mb-3"></i>
+                            <h5 class="mb-3">Documentación</h5>
+                            <p class="mb-4">
+                                Accede a guías y documentación del sistema
+                            </p>
+                            <a href="#" class="btn btn-outline-primary">
+                                Ver Documentación
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
