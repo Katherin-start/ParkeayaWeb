@@ -34,14 +34,25 @@ public class DjangoApiService {
             headers.set("Accept", MediaType.APPLICATION_JSON_VALUE);
             
             // Preparar el cuerpo de la solicitud como JSON string
-            String jsonBody = String.format(
-                "{\"nombre\":\"%s\",\"email\":\"%s\",\"telefono\":\"%s\",\"empresa\":\"%s\",\"mensaje\":\"%s\"}",
-                escaparJson(solicitud.getNombre()),
-                escaparJson(solicitud.getEmail()),
-                escaparJson(solicitud.getTelefono()),
-                escaparJson(solicitud.getEmpresa()),
-                escaparJson(solicitud.getMensaje())
-            );
+                    String jsonBody = String.format(
+            "{" +
+                "\"nombre\":\"%s\"," +
+                "\"email\":\"%s\"," +
+                "\"telefono\":\"%s\"," +
+                "\"empresa\":\"%s\"," +
+                "\"mensaje\":\"%s\"," +
+                "\"direccion\":\"%s\"," +
+                "\"capacidad\":%d" +
+            "}",
+            escaparJson(solicitud.getNombre()),
+            escaparJson(solicitud.getEmail()),
+            escaparJson(solicitud.getTelefono()),
+            escaparJson(solicitud.getEmpresa()),
+            escaparJson(solicitud.getMensaje()),
+            escaparJson(solicitud.getDireccion()),
+            solicitud.getCapacidad() != null ? solicitud.getCapacidad() : 0
+        );
+
             
             logger.info("Datos enviados a Django (JSON): {}", jsonBody);
             

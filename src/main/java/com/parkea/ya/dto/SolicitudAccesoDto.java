@@ -27,54 +27,43 @@ public class SolicitudAccesoDto {
     
     @Size(max = 500, message = "El mensaje no puede exceder 500 caracteres")
     private String mensaje;
-    
-    @Size(max = 100, message = "La ciudad no puede exceder 100 caracteres")
-    private String ciudad;
-    
-    private Double latitud;
-    
-    private Double longitud;
-    
+
+    /** NUEVOS CAMPOS */
+    @NotBlank(message = "La dirección es obligatoria")
+    @Size(max = 300, message = "La dirección no puede exceder 300 caracteres")
+    private String direccion;
+
+    private Integer capacidad;  // capacidad total de espacios
+
     // Constructores
     public SolicitudAccesoDto() {}
-    
+
     public SolicitudAccesoDto(String nombre, String email, String telefono, String empresa) {
         this.nombre = nombre;
         this.email = email;
         this.telefono = telefono;
         this.empresa = empresa;
     }
-    
-    public SolicitudAccesoDto(String nombre, String email, String telefono, String empresa, String mensaje) {
-        this.nombre = nombre;
-        this.email = email;
-        this.telefono = telefono;
-        this.empresa = empresa;
-        this.mensaje = mensaje;
-    }
-    
+
     // Getters y Setters
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
-    
+
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
-    
+
     public String getTelefono() { return telefono; }
     public void setTelefono(String telefono) { this.telefono = telefono; }
-    
+
     public String getEmpresa() { return empresa; }
     public void setEmpresa(String empresa) { this.empresa = empresa; }
-    
+
     public String getMensaje() { return mensaje; }
     public void setMensaje(String mensaje) { this.mensaje = mensaje; }
-    
-    public String getCiudad() { return ciudad; }
-    public void setCiudad(String ciudad) { this.ciudad = ciudad; }
-    
-    public Double getLatitud() { return latitud; }
-    public void setLatitud(Double latitud) { this.latitud = latitud; }
-    
-    public Double getLongitud() { return longitud; }
-    public void setLongitud(Double longitud) { this.longitud = longitud; }
+
+    public String getDireccion() { return direccion; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
+
+    public Integer getCapacidad() { return capacidad; }
+    public void setCapacidad(Integer capacidad) { this.capacidad = capacidad; }
 }

@@ -191,11 +191,18 @@
                     <div class="error-message" th:if="${#fields.hasErrors('empresa')}" th:errors="*{empresa}"></div>
                 </div>
             </div>
-            
-            <div class="form-group">
-                <label for="ciudad">Ciudad *</label>
-                <input type="text" id="ciudad" th:field="*{ciudad}" placeholder="Tu ciudad" required>
-                <div class="error-message" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></div>
+                        <div class="form-row">
+                <div class="form-group">
+                    <label for="direccion">Dirección *</label>
+                    <input type="text" id="direccion" th:field="*{direccion}" placeholder="Dirección del estacionamiento" required>
+                    <div class="error-message" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="capacidad">Capacidad (número de espacios) *</label>
+                    <input type="number" id="capacidad" th:field="*{capacidad}" min="1" placeholder="Ejemplo: 50" required>
+                    <div class="error-message" th:if="${#fields.hasErrors('capacidad')}" th:errors="*{capacidad}"></div>
+                </div>
             </div>
             
             
